@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using ReadOnlyCollectionsExtensions;
 
 namespace ElectronicObserver.Utility.Data {
 
@@ -44,12 +45,12 @@ namespace ElectronicObserver.Utility.Data {
 		/// <summary>
 		/// 艦娘経験値テーブル
 		/// </summary>
-		public static ReadOnlyDictionary<int, Experience> ShipExp { get; private set; }
+		public static IReadOnlyDictionary<int, Experience> ShipExp { get; private set; }
 		
 		/// <summary>
 		/// 提督経験値テーブル
 		/// </summary>
-		public static ReadOnlyDictionary<int, Experience> AdmiralExp { get; private set; }
+		public static IReadOnlyDictionary<int, Experience> AdmiralExp { get; private set; }
 
 		/// <summary>
 		/// 艦娘レベル最大値
@@ -67,7 +68,7 @@ namespace ElectronicObserver.Utility.Data {
 		/// </summary>
 		/// <param name="expTable">経験値テーブル。</param>
 		/// <param name="current">現在の累積経験値。</param>
-		private static int GetNextExp( ReadOnlyDictionary<int, Experience> expTable, int current ) {
+		private static int GetNextExp( IReadOnlyDictionary<int, Experience> expTable, int current ) {
 
 			Experience l = expTable.Values.FirstOrDefault( e => e.Total + e.Next > current );
 
@@ -101,7 +102,7 @@ namespace ElectronicObserver.Utility.Data {
 		/// <param name="expTable">経験値テーブル。</param>
 		/// <param name="current">現在の累積経験値。</param>
 		/// <param name="level">対象のレベル。</param>
-		private static int GetExpToLevel( ReadOnlyDictionary<int, Experience> expTable, int current, int level ) {
+		private static int GetExpToLevel( IReadOnlyDictionary<int, Experience> expTable, int current, int level ) {
 
 			if ( !expTable.ContainsKey( level ) )
 				return 0;
@@ -425,8 +426,8 @@ namespace ElectronicObserver.Utility.Data {
 				new Experience( 120, 15000000, 0 )
 			};
 
-			ShipExp = new ReadOnlyDictionary<int, Experience>( shipexp.ToDictionary( exp => exp.Level ) );
-			AdmiralExp = new ReadOnlyDictionary<int, Experience>( admiralexp.ToDictionary( exp => exp.Level ) );
+			ShipExp = shipexp.ToDictionary( exp => exp.Level ).AsReadOnlyDictionary();
+			AdmiralExp = admiralexp.ToDictionary( exp => exp.Level ).AsReadOnlyDictionary();
 
 			#endregion
 

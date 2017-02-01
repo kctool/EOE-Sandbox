@@ -7,9 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectronicObserver", "Elect
 	ProjectSection(ProjectDependencies) = postProject
 		{87A2B596-57D0-48BB-B522-895782D7A6FC} = {87A2B596-57D0-48BB-B522-895782D7A6FC}
 		{4ED4FDB5-9FD0-49E6-876D-1635F727C755} = {4ED4FDB5-9FD0-49E6-876D-1635F727C755}
+		{92DFA8A8-A110-4692-862D-7F0C229794B5} = {92DFA8A8-A110-4692-862D-7F0C229794B5}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Browser", "Browser\Browser.csproj", "{87A2B596-57D0-48BB-B522-895782D7A6FC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{92DFA8A8-A110-4692-862D-7F0C229794B5} = {92DFA8A8-A110-4692-862D-7F0C229794B5}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrowserLib", "BrowserLib\BrowserLib.csproj", "{8BB3E37D-09FB-40B9-958A-8CDCD18EF1F5}"
 EndProject
@@ -18,6 +22,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwfExtractor", "SwfExtractor\SwfExtractor\SwfExtractor.csproj", "{44244148-D3FE-4D71-AA8F-CACB54AC53C1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThemeVS2012Light", "DockPanelSuite\WinFormsUI\ThemeVS2012Light.csproj", "{4ED4FDB5-9FD0-49E6-876D-1635F727C755}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nekoxy", "Nekoxy\Nekoxy\Nekoxy.csproj", "{92DFA8A8-A110-4692-862D-7F0C229794B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +55,10 @@ Global
 		{4ED4FDB5-9FD0-49E6-876D-1635F727C755}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ED4FDB5-9FD0-49E6-876D-1635F727C755}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4ED4FDB5-9FD0-49E6-876D-1635F727C755}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92DFA8A8-A110-4692-862D-7F0C229794B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92DFA8A8-A110-4692-862D-7F0C229794B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92DFA8A8-A110-4692-862D-7F0C229794B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92DFA8A8-A110-4692-862D-7F0C229794B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

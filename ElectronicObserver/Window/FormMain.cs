@@ -22,6 +22,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Window.Plugins;
+using ICSharpCode.SharpZipLib.Zip;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace ElectronicObserver.Window {
@@ -544,12 +545,12 @@ namespace ElectronicObserver.Window {
 
 				using ( var stream = File.OpenRead( path ) ) {
 
-					using ( var archive = new ZipArchive( stream, ZipArchiveMode.Read ) ) {
+					using ( var archive = new ZipFile( stream ) ) {
 
 						MainDockPanel.SuspendLayout( true );
 
-						WindowPlacementManager.LoadWindowPlacement( this, archive.GetEntry( "WindowPlacement.xml" ).Open() );
-						LoadSubWindowsLayout( archive.GetEntry( "SubWindowLayout.xml" ).Open() );
+						WindowPlacementManager.LoadWindowPlacement( this, archive.GetInputStream(archive.GetEntry( "WindowPlacement.xml" )) );
+						LoadSubWindowsLayout( archive.GetInputStream(archive.GetEntry( "SubWindowLayout.xml" )) );
 					}
 				}
 
@@ -590,14 +591,16 @@ namespace ElectronicObserver.Window {
 				CreateParentDirectories( path );
 
 				using ( var stream = File.Open( path, FileMode.Create ) )
-				using ( var archive = new ZipArchive( stream, ZipArchiveMode.Create ) ) {
+				using ( var zipStream = new ZipOutputStream( stream ) ) {
+					var layoutEntry = new ZipEntry("SubWindowLayout.xml");
+					layoutEntry.DateTime = DateTime.Now;
+					zipStream.PutNextEntry(layoutEntry);
+					SaveSubWindowsLayout(zipStream);
 
-					using ( var layoutstream = archive.CreateEntry( "SubWindowLayout.xml" ).Open() ) {
-						SaveSubWindowsLayout( layoutstream );
-					}
-					using ( var placementstream = archive.CreateEntry( "WindowPlacement.xml" ).Open() ) {
-						WindowPlacementManager.SaveWindowPlacement( this, placementstream );
-					}
+					var placementEntry = new ZipEntry("WindowPlacement.xml");
+					placementEntry.DateTime = DateTime.Now;
+					zipStream.PutNextEntry(placementEntry);
+					WindowPlacementManager.SaveWindowPlacement( this, zipStream );
 				}
 
 

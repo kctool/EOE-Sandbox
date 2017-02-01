@@ -391,7 +391,7 @@ namespace ElectronicObserver.Utility {
 
 		// 即時変化させるとイベント終了直後に書き換えられて next が無視されるので苦肉の策
 		private async void OnMediaEnded() {
-			await Task.Run( () => Task.WaitAll( Task.Delay( 10 ) ) );
+			await TaskEx.Run( () => Task.WaitAll( TaskEx.Delay( 10 ) ) );
 			MediaEnded();
 		}
 	}

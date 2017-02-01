@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ReadOnlyCollectionsExtensions;
 
 namespace ElectronicObserver.Utility.Data {
 
@@ -1487,7 +1488,7 @@ namespace ElectronicObserver.Utility.Data {
 		/// <summary>
 		/// 対空カットイン固定ボーナス
 		/// </summary>
-		public static readonly ReadOnlyDictionary<int, int> AACutinFixedBonus = new ReadOnlyDictionary<int, int>( new Dictionary<int, int>() { 
+		public static readonly IReadOnlyDictionary<int, int> AACutinFixedBonus = new Dictionary<int, int>( new Dictionary<int, int>() { 
 			{  1, 7 },
 			{  2, 6 },
 			{  3, 4 },
@@ -1511,13 +1512,13 @@ namespace ElectronicObserver.Utility.Data {
 			{ 21, 5 },
 			{ 22, 2 },
 			{ 23, 1 },
-		} );
+		} ).AsReadOnlyDictionary();
 
 
 		/// <summary>
 		/// 対空カットイン変動ボーナス
 		/// </summary>
-		public static readonly ReadOnlyDictionary<int, double> AACutinVariableBonus = new ReadOnlyDictionary<int, double>( new Dictionary<int, double>() {
+		public static readonly IReadOnlyDictionary<int, double> AACutinVariableBonus = new Dictionary<int, double>( new Dictionary<int, double>() {
 			{  1, 1.7 },
 			{  2, 1.7 },
 			{  3, 1.6 },
@@ -1541,7 +1542,7 @@ namespace ElectronicObserver.Utility.Data {
 			{ 21, 1.45 },
 			{ 22, 1.2 },
 			{ 23, 1.05 },
-		} );
+		} ).AsReadOnlyDictionary();
 
 
 		/// <summary>

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ReadOnlyCollectionsExtensions;
 
 namespace ElectronicObserver.Utility {
 
@@ -79,7 +80,7 @@ namespace ElectronicObserver.Utility {
 		public static IReadOnlyList<LogData> Log {
 			get {
 				lock ( Logger.Instance ) {
-					return Logger.Instance.log.AsReadOnly();
+					return Logger.Instance.log.AsReadOnlyList();
 				}
 			}
 		}
